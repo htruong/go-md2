@@ -2,10 +2,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package md2_test
+package md2
 
 import (
-	"./"
 	"fmt"
 	"io"
 	"testing"
@@ -28,7 +27,7 @@ var golden = []md2Test{
 func TestGolden(t *testing.T) {
 	for i := 0; i < len(golden); i++ {
 		g := golden[i]
-		c := md2.New()
+		c := New()
 		for j := 0; j < 3; j++ {
 			if j < 2 {
 				io.WriteString(c, g.in)
@@ -51,13 +50,13 @@ func TestGolden(t *testing.T) {
 }
 
 func ExampleNew() {
-	h := md2.New()
+	h := New()
 	io.WriteString(h, "The fog is getting thicker!")
 	io.WriteString(h, "And Leon's getting laaarger!")
 	fmt.Printf("%x", h.Sum(nil))
 }
 
-var bench = md2.New()
+var bench = New()
 var buf = makeBuf()
 
 func makeBuf() []byte {
